@@ -1,6 +1,7 @@
 package syntaxgo_ast
 
 import (
+	"go/ast"
 	"go/parser"
 	"go/token"
 	"testing"
@@ -91,4 +92,26 @@ func TestAstBundle_GetPackageName(t *testing.T) {
 	astBundle := rese.P1(NewAstBundleV6(runpath.Path(), parser.PackageClauseOnly))
 	packageName := astBundle.GetPackageName()
 	t.Log(packageName)
+}
+
+func TestAstBundle_CheckTokenType(t *testing.T) {
+	path := runtestpath.SrcPath(t)
+	t.Log(path)
+	astBundle := done.P1(NewAstBundleV3(token.NewFileSet(), path))
+	astFile, _ := astBundle.GetBundle()
+
+	for _, declaration := range astFile.Decls {
+		genericDeclaration, ok := declaration.(*ast.GenDecl)
+		if !ok {
+			continue
+		}
+		t.Log("type_enum:", genericDeclaration.Tok)
+		if genericDeclaration.Tok == token.TYPE {
+			for _, spec := range genericDeclaration.Specs {
+				if typeDeclaration, ok := spec.(*ast.TypeSpec); ok {
+					t.Log("type_name:", typeDeclaration.Name.Name)
+				}
+			}
+		}
+	}
 }
