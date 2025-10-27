@@ -7,6 +7,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestInjectImports tests injecting missing import paths into Go source code
+// Verifies InjectImports can add missing fmt and strconv imports
+//
+// TestInjectImports 测试将缺失的导入路径注入 Go 源代码
+// 验证 InjectImports 能够添加缺失的 fmt 和 strconv 导入
 func TestInjectImports(t *testing.T) {
 	const code = `package main
 

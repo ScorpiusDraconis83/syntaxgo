@@ -6,6 +6,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestExtractTagValue tests extracting tag value by key
+// Verifies ExtractTagValue can extract complete tag content for a given key
+//
+// TestExtractTagValue 测试按键提取标签值
+// 验证 ExtractTagValue 能够为给定键提取完整的标签内容
 func TestExtractTagValue(t *testing.T) {
 	const tag = `gorm:"column:name; primaryKey;" json:"name"`
 
@@ -14,6 +19,11 @@ func TestExtractTagValue(t *testing.T) {
 	require.Equal(t, "column:name; primaryKey;", value)
 }
 
+// TestExtractTagField tests extracting specific field values from tag content
+// Verifies ExtractTagField handles various formats and whitespace scenarios
+//
+// TestExtractTagField 测试从标签内容提取特定字段值
+// 验证 ExtractTagField 能够处理各种格式和空白场景
 func TestExtractTagField(t *testing.T) {
 	t.Run("case-1", func(t *testing.T) {
 		const tmp = "column:name; primaryKey;"
@@ -64,6 +74,11 @@ func TestExtractTagField(t *testing.T) {
 	})
 }
 
+// TestExtract tests combined tag value and field extraction
+// Verifies both ExtractTagValue and ExtractTagField work together
+//
+// TestExtract 测试组合标签值和字段提取
+// 验证 ExtractTagValue 和 ExtractTagField 能够协同工作
 func TestExtract(t *testing.T) {
 	const tag = `gorm:"column:name; primaryKey;" json:"name"`
 
@@ -76,6 +91,11 @@ func TestExtract(t *testing.T) {
 	require.Equal(t, "name", field)
 }
 
+// TestExtractTagValueIndex tests extracting tag value with position indices
+// Verifies ExtractTagValueIndex returns correct value and its position in tag
+//
+// TestExtractTagValueIndex 测试提取标签值及其位置索引
+// 验证 ExtractTagValueIndex 返回正确的值和其在标签中的位置
 func TestExtractTagValueIndex(t *testing.T) {
 	const tag = `gorm:"column:name; primaryKey;" json:"name"`
 
@@ -86,6 +106,11 @@ func TestExtractTagValueIndex(t *testing.T) {
 	require.Equal(t, value, sub)
 }
 
+// TestExtractTagFieldIndex tests extracting field value with position indices
+// Verifies ExtractTagFieldIndex returns correct field and its position
+//
+// TestExtractTagFieldIndex 测试提取字段值及其位置索引
+// 验证 ExtractTagFieldIndex 返回正确的字段和其位置
 func TestExtractTagFieldIndex(t *testing.T) {
 	t.Run("case-1", func(t *testing.T) {
 		const tmp = "column:name; primaryKey;"

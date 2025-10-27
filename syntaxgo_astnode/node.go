@@ -1,3 +1,10 @@
+// Package syntaxgo_astnode provides utilities to work with AST nodes
+// Handle node position info and extract code content from AST nodes
+// Support operations like code extraction, modification, and deletion
+//
+// syntaxgo_astnode 包提供处理 AST 节点的工具
+// 处理节点位置信息并从 AST 节点提取代码内容
+// 支持代码提取、修改和删除等操作
 package syntaxgo_astnode
 
 import (

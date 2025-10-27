@@ -2,8 +2,11 @@ package syntaxgo_astnorm
 
 import "strings"
 
-// StatementParts represents a list of strings that are usually separated by commas.
-// StatementParts 通常用于表示一个以逗号分隔的字符串列表，常见于参数列表或返回值列表。
+// StatementParts represents a list of strings separated by commas
+// Used in parameter lists, return value lists, and function arguments
+//
+// StatementParts 表示以逗号分隔的字符串列表
+// 用于参数列表、返回值列表和函数参数
 type StatementParts []string
 
 // MergeParts joins the elements in StatementParts with a comma and a space, and returns the resulting string.
@@ -12,8 +15,11 @@ func (stmts StatementParts) MergeParts() string {
 	return strings.Join(stmts, ", ")
 }
 
-// StatementLines represents a list of strings that are usually separated by newline characters.
-// StatementLines 通常用于表示一个以换行符分隔的字符串列表，常见于赋值语句、返回语句或函数调用语句。
+// StatementLines represents a list of strings separated by newlines
+// Used in assignment statements, return statements, and function calls
+//
+// StatementLines 表示以换行符分隔的字符串列表
+// 用于赋值语句、返回语句和函数调用
 type StatementLines []string
 
 // MergeLines joins the elements in StatementLines with a newline character, and returns the resulting string.

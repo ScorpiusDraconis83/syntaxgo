@@ -11,6 +11,11 @@ import (
 	"github.com/yyle88/syntaxgo/syntaxgo_search"
 )
 
+// TestGetSimpleResElements tests extracting result elements from function return types
+// Verifies GetSimpleResElements can parse return value information from AST
+//
+// TestGetSimpleResElements 测试从函数返回类型提取结果元素
+// 验证 GetSimpleResElements 能够从 AST 解析返回值信息
 func TestGetSimpleResElements(t *testing.T) {
 	path := runtestpath.SrcPath(t)
 	t.Log(path)
@@ -28,6 +33,11 @@ func TestGetSimpleResElements(t *testing.T) {
 	}
 }
 
+// TestGetSimpleArgElements tests extracting argument elements from function parameters
+// Verifies GetSimpleArgElements can parse parameter information from AST
+//
+// TestGetSimpleArgElements 测试从函数参数提取参数元素
+// 验证 GetSimpleArgElements 能够从 AST 解析参数信息
 func TestGetSimpleArgElements(t *testing.T) {
 	path := runtestpath.SrcPath(t)
 	t.Log(path)

@@ -12,6 +12,11 @@ import (
 	"github.com/yyle88/syntaxgo/syntaxgo_search"
 )
 
+// TestNewPrefixedNameTypeElements tests creating elements with custom prefix
+// Verifies NewPrefixedNameTypeElements can generate names with specified prefix
+//
+// TestNewPrefixedNameTypeElements 测试使用自定义前缀创建元素
+// 验证 NewPrefixedNameTypeElements 能够使用指定前缀生成名称
 func TestNewPrefixedNameTypeElements(t *testing.T) {
 	path := runtestpath.SrcPath(t)
 	t.Log(path)

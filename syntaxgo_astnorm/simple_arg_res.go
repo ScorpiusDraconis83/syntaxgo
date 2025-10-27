@@ -35,8 +35,8 @@ func GetSimpleArgElements(fields []*ast.Field, sourceCode []byte) NameTypeElemen
 // SimpleMakeNameFunction 返回一个函数，该函数生成带有指定前缀的名称，处理正常和错误的情况。
 func SimpleMakeNameFunction(prefix string) MakeNameFunction {
 	return func(ident *ast.Ident, typeKind string, nameIndex int, anonymousIndex int) string {
-		// If the identifier has a name, return the name directly.
-		// 如果标识符有名称，则直接返回该名称。
+		// When the identifier has a name, return that name.
+		// 当标识符有名称时，返回该名称。
 		return tern.BFF(ident != nil && ident.Name != "",
 			func() string { return ident.Name },
 			// If the identifier does not have a name, generate a name based on the type (error or normal).

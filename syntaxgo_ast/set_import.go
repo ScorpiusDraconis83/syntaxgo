@@ -93,7 +93,7 @@ func (param *PackageImportOptions) GetPkgPaths() []string {
 	)
 }
 
-// InjectImports adds necessary import paths into the provided Go source code.
+// InjectImports adds required import paths into the provided Go source code.
 // InjectImports 将必要的导入路径添加到提供的 Go 源代码中。
 func (param *PackageImportOptions) InjectImports(source []byte) []byte {
 	return InjectImports(source, param.GetPkgPaths())
@@ -109,11 +109,11 @@ func (param *PackageImportOptions) CreateImports() string {
 // CreateImports 从提供的包路径生成导入语句的字符串。
 func CreateImports(imports []string) string {
 	if len(imports) == 0 {
-		zaplog.LOG.Debug("imports is none") // If no imports, still proceed. Even an empty "import ()" block is valid. // 如果没有导入，依然执行。即使是空的 "import ()" 块也是有效的。
+		zaplog.LOG.Debug("imports is none") // If no imports, continue. Even a blank "import ()" block is valid. // 如果没有导入，依然执行。即使是空的 "import ()" 块也是有效的。
 	}
 	var pkg2quotes []string
 	var mp = map[string]bool{}
-	// Iterate over each import path and format them with quotes if necessary.
+	// Process each import path and format with quotes when needed.
 	// 遍历每个导入路径，并在必要时用双引号格式化它们。
 	for _, sub := range imports {
 		if sub == "" {
@@ -164,7 +164,7 @@ func InjectImports(source []byte, packages []string) []byte {
 		missMap[utils.SetDoubleQuotes(pkgPath)] = true
 	}
 
-	// Remove any packages that are already present in the imports.
+	// Remove packages that exist in the imports.
 	// 删除已经存在于导入中的包。
 	for _, one := range astFile.Imports {
 		delete(missMap, one.Path.Value)
@@ -172,18 +172,18 @@ func InjectImports(source []byte, packages []string) []byte {
 
 	if len(missMap) > 0 {
 		pkg2quotes := maps.Keys(missMap)
-		slices.Sort(pkg2quotes) // Sort the package paths to maintain stability. // 排序包路径以保持稳定性。
+		slices.Sort(pkg2quotes) // Sort the package paths to maintain consistent ordering. // 排序包路径以保持稳定性。
 
 		ptx := utils.NewPTX()
-		ptx.Println()         // Print a newline for formatting. // 打印换行符以进行格式化。
-		if len(missMap) < 2 { // If there is only one missing import, print it directly. // 如果只有一个缺失的导入，直接打印它。
+		ptx.Println()         // Print a newline formatting. // 打印换行符以进行格式化。
+		if len(missMap) < 2 { // When just one import is missing, print it as a single line. // 当只缺失一个导入时，将其打印为单行。
 			for _, pkg2quote := range pkg2quotes {
 				ptx.Println("import", pkg2quote)
 			}
 		} else {
 			ptx.Println("import (")
 			for _, pkg2quote := range pkg2quotes {
-				ptx.Println("    " + pkg2quote) // Indent the imports for better readability. // 缩进导入路径以提高可读性。
+				ptx.Println("    " + pkg2quote) // Indent the imports. // 缩进导入路径。
 			}
 			ptx.Println(")")
 		}

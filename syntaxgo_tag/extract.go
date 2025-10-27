@@ -1,3 +1,10 @@
+// Package syntaxgo_tag provides struct tag parsing and manipulation utilities
+// Parse GORM, JSON, and other tags from struct field tag strings
+// Extract specific fields and values, update tag contents programmatically
+//
+// syntaxgo_tag 包提供结构体标签解析和操作工具
+// 从结构体字段标签字符串解析 GORM、JSON 和其他标签
+// 提取特定字段和值，以编程方式更新标签内容
 package syntaxgo_tag
 
 import (

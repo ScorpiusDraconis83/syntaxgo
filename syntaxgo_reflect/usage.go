@@ -1,3 +1,10 @@
+// Package syntaxgo_reflect provides type reflection and package path extraction
+// Extract package info from Go types using reflection API
+// Generate qualified type names and import statements to use in code generation
+//
+// syntaxgo_reflect 包提供类型反射和包路径提取
+// 使用反射 API 从 Go 类型提取包信息
+// 生成限定类型名和导入语句用于代码生成
 package syntaxgo_reflect
 
 import (
@@ -13,7 +20,7 @@ import (
 // just the type name.
 //
 // For example, if the type is "Demo" from package "abc", this function will return "abc.Demo".
-// If the package path is empty, it simply returns the type name.
+// If the package path is empty, it just returns the type name.
 //
 // GenerateTypeUsageCode 用于生成从其他包调用某个包类型的代码。
 // 它构造了类型在其他包中的使用代码，包括包名和类型名。
@@ -26,7 +33,7 @@ func GenerateTypeUsageCode(a reflect.Type) string {
 	// 获取类型的包路径
 	pkgPath := a.PkgPath()
 
-	// Use tern.BFF to conditionally return the fully qualified type name or just the type name
+	// Use tern.BFF to return the complete qualified type name or just the type name
 	// based on whether the package path is available.
 	// 使用 tern.BFF 条件性地返回完整的类型名或仅返回类型名，取决于是否有包路径。
 	return tern.BFF(pkgPath != "", func() string {
